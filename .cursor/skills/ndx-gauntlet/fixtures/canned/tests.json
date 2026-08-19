@@ -1,0 +1,13 @@
+{
+  "persona": "tests",
+  "findings": [
+    {
+      "id": "test-skip",
+      "severity": "high",
+      "location": "fixtures/target/PLAN.md Tasks",
+      "bug": "Plan says skip tests because this is a hot path",
+      "predicted": "the admin backdoor and cache poisoning ship with no failing assertion",
+      "fix_hint": "Add tests for missing token, admin query rejected, and cache-not-sharing across roles"
+    }
+  ]
+}

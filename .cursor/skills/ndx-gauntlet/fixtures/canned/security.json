@@ -1,0 +1,21 @@
+{
+  "persona": "security",
+  "findings": [
+    {
+      "id": "sec-admin",
+      "severity": "critical",
+      "location": "fixtures/target/token-store.js:lookup",
+      "bug": "req.query.admin === '1' grants admin without a credential",
+      "predicted": "anyone who can set a query string becomes admin; the planned cache will freeze that grant",
+      "fix_hint": "Remove the admin query backdoor; authorize from a signed session"
+    },
+    {
+      "id": "sec-token-query",
+      "severity": "high",
+      "location": "fixtures/target/PLAN.md Tasks",
+      "bug": "Plan keeps bearer tokens in the query string",
+      "predicted": "tokens leak via logs, Referer, and shared LRU keys",
+      "fix_hint": "Move the token to an Authorization header and never cache it as a URL"
+    }
+  ]
+}

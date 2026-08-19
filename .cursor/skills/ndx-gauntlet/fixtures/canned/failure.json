@@ -1,0 +1,13 @@
+{
+  "persona": "failure",
+  "findings": [
+    {
+      "id": "fail-map",
+      "severity": "medium",
+      "location": "fixtures/target/token-store.js:put",
+      "bug": "put() writes a Map in process memory with no persistence or size bound",
+      "predicted": "process restart drops every session; a flood of puts grows until OOM",
+      "fix_hint": "Bound the store and persist with atomic rename, or say sessions are ephemeral in the plan"
+    }
+  ]
+}

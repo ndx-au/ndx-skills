@@ -1,0 +1,13 @@
+{
+  "persona": "correctness",
+  "findings": [
+    {
+      "id": "corr-lru-uncached-admin",
+      "severity": "high",
+      "location": "fixtures/target/COMPLETE.md lookup",
+      "bug": "admin=1 returns before lru.set, so that query is never stored; the Map LRU has no 256 cap and grows without eviction",
+      "predicted": "staging admin shortcuts stay uncached while every other lookup fills an unbounded Map until OOM",
+      "fix_hint": "Cache only post-authn results with a real 256 LRU; do not grow an unbounded Map"
+    }
+  ]
+}

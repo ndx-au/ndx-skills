@@ -1,0 +1,13 @@
+{
+  "persona": "concurrency",
+  "findings": [
+    {
+      "id": "conc-lru",
+      "severity": "high",
+      "location": "fixtures/target/token-store.js:store",
+      "bug": "Shared Map plus planned LRU have no invalidation when put() mutates a user",
+      "predicted": "one request caches {role:anon} while put() upgrades the token; later reads stay anon",
+      "fix_hint": "Invalidate or never cache authorization decisions across put()"
+    }
+  ]
+}
