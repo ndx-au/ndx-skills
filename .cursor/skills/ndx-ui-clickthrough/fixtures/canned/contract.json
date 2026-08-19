@@ -1,0 +1,13 @@
+{
+  "persona": "contract",
+  "findings": [
+    {
+      "id": "contract-brief-path",
+      "severity": "high",
+      "location": "docs/ui-contract.md Brief",
+      "bug": "Contract says Brief lives at /brief?c= but the shipped nav posts to /campaigns/:id/edit with no campaign query",
+      "predicted": "click-ops and humans follow the contract and miss the brief entirely",
+      "fix_hint": "Route Brief to /brief?c= as contracted, or update the contract and every caller together"
+    }
+  ]
+}

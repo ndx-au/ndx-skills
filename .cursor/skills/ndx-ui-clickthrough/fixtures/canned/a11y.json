@@ -1,0 +1,13 @@
+{
+  "persona": "a11y",
+  "findings": [
+    {
+      "id": "a11y-save-unnamed",
+      "severity": "high",
+      "location": "src/BriefForm.tsx:SaveButton",
+      "bug": "Primary Save control is an icon-only button with no accessible name and no associated label",
+      "predicted": "keyboard and screen-reader users cannot tell Save from nearby icon buttons; the planned approve path is unreachable",
+      "fix_hint": "Give Save an accessible name matching the visible label Save in the UI contract"
+    }
+  ]
+}

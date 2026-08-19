@@ -1,0 +1,13 @@
+{
+  "persona": "clickops",
+  "findings": [
+    {
+      "id": "click-brief-approve",
+      "severity": "high",
+      "location": "/brief?c=demo Approve",
+      "bug": "Clicking Approve shows a red banner Request failed and never reaches the contracted Look page; shot brief-approve.png",
+      "predicted": "the plan's brief-approve gate is not actually clickable in the live UI",
+      "fix_hint": "Make Approve succeed for an approved-brand campaign, or surface the real blocker the contract names"
+    }
+  ]
+}

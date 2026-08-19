@@ -1,0 +1,13 @@
+{
+  "persona": "visual",
+  "findings": [
+    {
+      "id": "visual-shot-rail-overflow",
+      "severity": "medium",
+      "location": "src/BoardRail.tsx",
+      "bug": "Horizontal shot rail has no overflow-x; cards wrap and push Approve below the fold at 390px",
+      "predicted": "mobile click-ops never sees Approve without scrolling a broken wrap",
+      "fix_hint": "Keep the shot rail a single horizontal scroller at the mobile breakpoint in the contract"
+    }
+  ]
+}

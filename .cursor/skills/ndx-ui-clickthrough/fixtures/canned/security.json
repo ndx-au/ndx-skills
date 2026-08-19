@@ -1,0 +1,13 @@
+{
+  "persona": "security",
+  "findings": [
+    {
+      "id": "sec-token-dom",
+      "severity": "critical",
+      "location": "src/Settings.tsx:ApiKeyField",
+      "bug": "API key is written into a readable input value and a data-token attribute on the form",
+      "predicted": "any XSS or screenshot in click-ops leaks the key; the plan called the key vault-only",
+      "fix_hint": "Keep the secret out of the DOM; show last-four only and write via a vault-backed bind flow"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "persona": "states",
+  "findings": [
+    {
+      "id": "states-error-as-empty",
+      "severity": "high",
+      "location": "src/CampaignList.tsx:load",
+      "bug": "Fetch failure renders the same empty list as zero campaigns, with no error copy",
+      "predicted": "operators retry setup thinking there are no campaigns; the plan's error state never ships",
+      "fix_hint": "Show a distinct error state with retry; do not reuse the empty-list copy"
+    }
+  ]
+}
