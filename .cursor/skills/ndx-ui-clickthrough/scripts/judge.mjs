@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, realpathSync } from 'node:fs'
 import { mkdir, open, readFile, rename, stat, unlink } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -783,8 +783,16 @@ async function status() {
   }
 }
 
-const entry = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : ''
-if (import.meta.url === entry) {
+function cliEntryUrl() {
+  if (!process.argv[1]) return ''
+  const resolved = path.resolve(process.argv[1])
+  try {
+    return pathToFileURL(realpathSync(resolved)).href
+  } catch {
+    return pathToFileURL(resolved).href
+  }
+}
+if (import.meta.url === cliEntryUrl()) {
   main().catch((error) => {
     if (error instanceof JudgeFailError) {
       console.error(error.message)

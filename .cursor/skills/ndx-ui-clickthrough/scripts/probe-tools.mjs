@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** Detect Playwright Chromium and browser-use. No network. JSON stdout only. */
 
-import { existsSync } from 'node:fs'
+import { existsSync, realpathSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import os from 'node:os'
 import path from 'node:path'
@@ -165,7 +165,15 @@ function printProbe() {
   }
 }
 
-const entry = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : ''
-if (import.meta.url === entry) {
+function cliEntryUrl() {
+  if (!process.argv[1]) return ''
+  const resolved = path.resolve(process.argv[1])
+  try {
+    return pathToFileURL(realpathSync(resolved)).href
+  } catch {
+    return pathToFileURL(resolved).href
+  }
+}
+if (import.meta.url === cliEntryUrl()) {
   printProbe()
 }

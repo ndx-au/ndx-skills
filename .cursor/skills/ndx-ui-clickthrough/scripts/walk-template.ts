@@ -7,6 +7,7 @@
  *   CLICKTHROUGH_BASE_URL                (user-confirmed http(s) origin)
  *
  * Never run with deno -A. See reference.md for the allowlist.
+ * Deno is only the walk runner; it is not the product under test.
  */
 import { chromium, type Browser, type Page } from "npm:playwright@1.58.0";
 

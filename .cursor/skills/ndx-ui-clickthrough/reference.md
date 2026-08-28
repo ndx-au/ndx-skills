@@ -66,15 +66,20 @@ Do not invent a chrome SHA. Refuse symlink / non-file chrome instead.
 
 Copy [scripts/walk-template.ts](scripts/walk-template.ts) to `.clickthrough/inbox/walk.ts` **after** gitignoring `.clickthrough/`. Confirmed origin is http(s) only.
 
-**Never** `deno run -A`. Working allowlist (`CHROME` = probe JSON `chrome`; `ORIGIN` = `host:port` of the confirmed origin, e.g. `127.0.0.1:4173` or `example.com:443`):
+**Never** `deno run -A`. Deno is only how this skill launches the Playwright walk script. It does not imply anything about the product’s runtime or framework.
+
+Playwright-core 1.58 enumerates `process.env`, calls Node `os.*` (`release`, `homedir`, …), and writes launch artifacts under `/tmp`. The walk needs unlisted `--allow-env`, `--allow-sys`, and `--allow-write` for `.clickthrough/inbox` **and** `/tmp`. That is still not `deno run -A` (no blanket run/read/net).
+
+Working allowlist (`CHROME` = probe JSON `chrome`; `ORIGIN` = `host:port` of the confirmed origin, e.g. `127.0.0.1:4173` or `example.com:443`):
 
 ```bash
 timeout -k 5s 120s deno run \
   --allow-run="$CHROME" \
   --allow-read="$CHROME","$HOME/.cache/ms-playwright","$HOME/.cache/deno","$PWD/.clickthrough/inbox" \
-  --allow-write=.clickthrough/inbox \
+  --allow-write=.clickthrough/inbox,/tmp \
   --allow-net="$ORIGIN",127.0.0.1,0.0.0.0 \
-  --allow-env=HOME,PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,CHROME_PATH,CLICKTHROUGH_BASE_URL,DISPLAY \
+  --allow-env \
+  --allow-sys \
   --allow-import \
   .clickthrough/inbox/walk.ts
 ```
