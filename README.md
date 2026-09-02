@@ -6,6 +6,8 @@ The idea is to work WITH your cursor harness, not against it.
 
 Each skill is a folder under [`.cursor/skills/`](.cursor/skills/) (`SKILL.md` plus scripts). Clone this repo into a project, copy a folder into the project’s `.cursor/skills/`, or symlink one into `~/.cursor/skills/` for every repo on the machine.
 
+Private NDX skills (flavored STE, desktop overlay) live in [`ndx-au/agent-skills`](https://github.com/ndx-au/agent-skills).
+
 ---
 
 ## [ndx-gauntlet](.cursor/skills/ndx-gauntlet)
