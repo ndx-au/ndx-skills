@@ -1,0 +1,16 @@
+---
+description: Run ndx-public-repo before every git push to this public repo
+alwaysApply: true
+---
+
+# ndx-public-repo on push
+
+This repository is **public** on GitHub (`ndx-au`). Before any `git push` (including force-push, push of tags, or pushing a new branch), agents **must**:
+
+1. Load and follow the **ndx-public-repo** skill (private NDX skill; do not paste its denylist into this repo).
+2. Run it against this repository root (sync with `origin` first if the skill expects a current tip).
+3. Treat a **NOT SAFE TO PUBLISH** verdict as a hard stop — fix findings (and history if required) before pushing.
+4. Only push when the skill verdict is **SAFE TO PUBLISH**.
+
+Do not skip this gate for “small” commits, docs-only changes, or CI-related pushes.
+
